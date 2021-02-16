@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
 <head>
     <meta charset="UTF-8">
     <title>Homepagina</title>
@@ -7,5 +8,6 @@
 <body>
 <h1>Home pagina</h1>
 <p th:text="${mijnSpeciaalNummer}">onbekend nummer</p>
+<a th:href="@{/about}">Naar de aboutpagina</a>
 </body>
 </html>

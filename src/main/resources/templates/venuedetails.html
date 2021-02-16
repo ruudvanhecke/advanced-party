@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
+<head>
+    <meta charset="UTF-8">
+    <title>venuedetails</title>
+</head>
+<body>
+<div>
+    <div class="nav">
+        <h1>Let's Party!</h1>
+        <div class="navbuttons">
+            <a href="/home">home</a>
+            <a href="/about">about</a>
+        </div>
+    </div>
+    <div class="row1">
+        <div class="row1content">
+            <h2 th:text="|venue: ${venuename}|">venue: onbekend</h2>
+        </div>
+    </div>
+</div>
+</body>
+</html>
