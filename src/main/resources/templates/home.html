@@ -7,17 +7,17 @@
 </head>
 <body>
 <div class="nav">
-<h1>Homepagina</h1>
-<div class="navbuttons">
-    <a class="buttonLook menuButton" href="/home">home</a>
-    <a class="buttonLook menuButton" th:href="@{/about}">About</a>
-    <a class="buttonLook menuButton" th:href="@{/venuelist}">Venues</a>
+    <h1>Let's Party!</h1>
+    <div th:replace="fragments/header :: header">Hier komt de header</div>
 </div>
-</div>
+<div class="freespaceforheader"></div>
 <div class="row1">
     <div class="row1content">
-<h4 th:text="${mijnSpeciaalNummer}">onbekend nummer</h4>
+        <h2>Homepagina</h2>
+<h4 th:text="|Speciaal nummer ${mijnSpeciaalNummer}|">onbekend nummer</h4>
     </div>
 </div>
 </body>
+<div th:replace="fragments/footer :: footer">Hier komt de footer</div>
+
 </html>

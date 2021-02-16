@@ -7,16 +7,15 @@
     <title>About</title>
 </head>
 <body>
-<div class="nav">
-<h1>About me</h1>
-<div class="navbuttons">
-    <a class="buttonLook menuButton" href="/home">home</a>
-    <a class="buttonLook menuButton" th:href="@{/about}">About</a>
-    <a class="buttonLook menuButton" th:href="@{/venuelist}">Venues</a>
+<div th:replace="fragments/header :: header">Hier komt de header</div>
+<div class="row1">
+    <div class="row1content">
+<h2>About</h2>
+<a>Dit gaat over de applicatie</a>
+<p th:text="|Specaail nummer ${mijnSpeciaalNummer}|">onbekend nummer</p>
+    </div>
 </div>
-</div>
-<a>This is all about me...</a>
-<p th:text="${mijnSpeciaalNummer}">onbekend nummer</p>
-<a class="buttonLook menuButton" th:href="@{/home}">Ga terug naar home</a>
 </body>
+<div th:replace="fragments/footer :: footer">Hier komt de footer</div>
+
 </html>

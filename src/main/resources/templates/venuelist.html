@@ -5,11 +5,7 @@
 <div>
     <div class="nav">
         <h1>Let's Party!</h1>
-        <div class="navbuttons">
-            <a class="buttonLook menuButton" href="/home">home</a>
-            <a class="buttonLook menuButton" th:href="@{/about}">About</a>
-            <a class="buttonLook menuButton" th:href="@{/venuelist}">Venues</a>
-        </div>
+        <div th:replace="fragments/header :: header">Hier komt de header</div>
     </div>
     <div class="row1">
         <div class="row1content">
@@ -25,4 +21,7 @@
     </div>
 
 </div>
+</div>
 </body>
+<div th:replace="fragments/footer :: footer">Hier komt de footer</div>
+</html>
