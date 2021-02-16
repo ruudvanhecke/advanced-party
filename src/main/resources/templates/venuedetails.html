@@ -1,0 +1,21 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css" />
+<body>
+<div>
+    <div class="nav">
+        <h1>venues</h1>
+        <div class="navbuttons">
+            <a class="buttonLook menuButton" href="/home">home</a>
+            <a class="buttonLook menuButton" th:href="@{/about}">About</a>
+            <a class="buttonLook menuButton" th:href="@{/venuelist}">Venues</a>
+        </div>
+    </div>
+    <div class="freespaceforheader"></div>
+    <div class="row1">
+        <div class="row1content">
+            <h2 th:text="|venue: ${venuename}|">venue: onbekend</h2>
+        </div>
+    </div>
+</div>
+</body>

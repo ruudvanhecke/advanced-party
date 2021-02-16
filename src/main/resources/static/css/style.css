@@ -1,9 +1,250 @@
-html{
-font-family:    Merriweather, "Source Sans Pro", Arial, "Helvetica Neue", Helvetica, sans-serif;  
-    
-    
-}
 body {
-    background-color: skyblue;
+    background-color: #D0CFEC;
+    color: #4c6c5d;
+    font-family: Bahnschrift, sans-serif;
+    margin: 0;
 }
 
+h1 {
+    margin: 20px 40px;
+    text-align: left;
+    font-size: 4em;
+}
+
+h2 {
+    margin: 10px 0;
+    font-size: 2em;
+}
+
+.inline, .smallButton.inline {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* header with title and navigation */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+    height: 150px;
+}
+
+.freespaceforheader {
+    margin: 150px 0 20px 0;
+}
+
+/*navigation buttons in header*/
+.navbuttons {
+    display: flex;
+}
+
+.row1 {
+    display: flex;
+    position: relative;
+    margin: 20px 0;
+}
+
+.row1content {
+    flex-grow: 4;
+    margin: 0 50px;
+}
+
+/* links that look like buttons */
+.buttonLook {
+    background-color: #EDC7CF;
+    color: #6A8E7F;
+    text-decoration: none;
+    text-align: center;
+    box-shadow: 1px 1px 1px darkgrey;
+}
+
+.buttonLook:hover {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+}
+
+.buttonLook:active {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+}
+
+.mediumButton {
+    display: block;
+    margin: 10px 40px;
+    width: 400px;
+    font-size: 1.2em;
+    padding: 1em;
+}
+
+.smallButton, .prevnextButton {
+    display: block;
+    font-size: 1em;
+    padding: 0.5em;
+}
+
+.smallButton {
+    width: 5em;
+}
+
+.menuButton {
+    display: block;
+    margin: 0 10px;
+    width: 9em;
+    padding: 0.2em;
+}
+
+.secbutton {
+    margin-left: auto;
+}
+
+.filterButton {
+    margin: 0 2px;
+    width: 2em;
+    padding: 0.2em;
+}
+
+.prevButtonDiv {
+    position: fixed;
+    left: 10px;
+    top: 160px;
+}
+
+.nextButtonDiv {
+    position: fixed;
+    right: 10px;
+    top: 160px;
+}
+
+.goButtonDiv {
+    display: inline-block;
+    margin-left: 20px;
+    position: relative;
+    top: -5px;
+}
+
+.level1ButtonDiv, .level2ButtonDiv, .level3ButtonDiv {
+    position: fixed;
+    top: 160px;
+}
+
+.level1ButtonDiv {
+    right: 50px;
+}
+
+.level2ButtonDiv {
+    right: 150px;
+}
+
+.level3ButtonDiv {
+    right: 250px;
+}
+
+.level1ButtonDiv.submitButton, .level2ButtonDiv.submitButton, .level3ButtonDiv.submitButton {
+    top: 156px;
+}
+
+.bottom {
+    background-color: #6A8E7F;
+    color: #EDC7CF;
+    height: 30px;
+    font-size: 0.7em;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+.bottom p {
+    margin-left: 40px;
+}
+
+.info {
+    width: 240px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.info + div {
+    display: inline-block;
+}
+
+.editfield {
+    margin-left: 8px;
+    font-size: 1em;
+}
+
+textarea.editfield {
+    width: 300px;
+    height: 100px;
+    vertical-align: top;
+}
+
+p { margin: 5px; }
+
+.activeFilter {
+    background-color: #f3a4b4;
+    color: #2b3e35;
+}
+
+.filters {
+    clear: left;
+    float: left;
+}
+
+.onefilter, .oneinput {
+    margin: 2px 0;
+    display: flex;
+}
+
+.filtername {
+    padding: 0.2em;
+    width: 70px;
+    text-align: right;
+}
+
+input + span {
+    margin-left: 5px;
+}
+
+.verticalmargin {
+    margin: 8px 0;
+}
+
+.generalinfo {
+    font-size: 12px;
+    background-color: lightgoldenrodyellow;
+    padding: 1px 5px;
+}
+
+.collectionlist {
+    float: left;
+}
+
+.collectionleft {
+    clear: left;
+}
+
+.error {
+    color: red;
+    font-size: larger;
+    margin-bottom: 20px;
+}
+
+.fieldError, input.fieldError {
+    background-color: red;
+}
+
+.row1 img {
+    width: 100%;
+    height: auto;
+}
+
+.username {
+    font-style: italic;
+}

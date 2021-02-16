@@ -6,9 +6,18 @@
     <title>Homepagina</title>
 </head>
 <body>
+<div class="nav">
 <h1>Homepagina</h1>
-<p th:text="${mijnSpeciaalNummer}">onbekend nummer</p>
-<a th:href="@{/about}">About</a>
-
+<div class="navbuttons">
+    <a class="buttonLook menuButton" href="/home">home</a>
+    <a class="buttonLook menuButton" th:href="@{/about}">About</a>
+    <a class="buttonLook menuButton" th:href="@{/venuelist}">Venues</a>
+</div>
+</div>
+<div class="row1">
+    <div class="row1content">
+<h4 th:text="${mijnSpeciaalNummer}">onbekend nummer</h4>
+    </div>
+</div>
 </body>
 </html>
