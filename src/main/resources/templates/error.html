@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css" />
+<head>
+    <meta charset="UTF-8">
+    <title>Error pagina</title>
+</head>
+<body>
+<div class="nav">
+    <h1>ERROR!</h1>
+</div>
+<div class="freespaceforheader"></div>
+<div class="row1">
+    <div class="row1content">
+        <h2>Keer terug naar een bestaande pagina!</h2>
+        <a class="buttonLook menuButton" href="/home">Ga terug naar home</a>
+
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer">Hier komt de footer</div>
+
+</html>
