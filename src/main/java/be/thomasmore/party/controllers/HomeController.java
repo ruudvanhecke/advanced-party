@@ -1,5 +1,6 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Venue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,7 +10,12 @@ import java.util.ArrayList;
 
 @Controller
 public class HomeController {
-    private final String[] venueNames = { "De Club", "De Loods", "Zapoi", "Nekkerhal" };
+    private final Venue[] venues = {
+            new Venue("De Club", "http://declubinfo"),
+            new Venue("De Loods", "http://deloodsinfo"),
+            new Venue("Zapoi", "http://zapoiinfo"),
+            new Venue("Nekkerhal", "http://nekkerhalinfo")
+    };
 
     @GetMapping({"/","/home"})
     public String home(Model model) {
@@ -23,17 +29,17 @@ public class HomeController {
 
     @GetMapping({"/venuedetails", "/venuedetails/{venueId}"})
     public String venueDetails(Model model, @PathVariable(required = false) Integer venueId) {
-        if (venueId!=null && venueId>=0 && venueId<venueNames.length) {
-            model.addAttribute("venuename", venueNames[venueId]);
-            model.addAttribute("prev", venueId>0 ? venueId-1 : venueNames.length-1);
-            model.addAttribute("next", venueId<venueNames.length-1 ? venueId+1 : 0);
+        if (venueId!=null && venueId>=0 && venueId<venues.length) {
+            model.addAttribute("venuename", venues[venueId].getVenueName());
+            model.addAttribute("prev", venueId>0 ? venueId-1 : venues.length-1);
+            model.addAttribute("next", venueId<venues.length-1 ? venueId+1 : 0);
         }
         return "venuedetails";
     }
 
     @GetMapping("/venuelist")
     public String venueList(Model model) {
-        model.addAttribute("venues", venueNames);
+        model.addAttribute("venues", venues);
         return "venuelist";
     }
 
