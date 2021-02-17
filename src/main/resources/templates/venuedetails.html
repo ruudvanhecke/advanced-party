@@ -7,27 +7,35 @@
 </head>
 <body>
 <div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
-<div>
-    <div class="row1">
-        <div class="row1content">
-            <div th:if="${prev!=null}" class="prevButtonDiv">
-                <a class="buttonLook smallButton" th:href="@{'/venuedetails/' + ${prev}}">&lt;</a>
-            </div>
-            <div th:if="${venue}">
-                <h2 th:text="|venue: ${venue.venueName}|">venue: onbekend</h2>
-                <p><span class="fixwidth200">Info:</span>a th:href="@{${venue.linkMoreInfo}}">meer info</spana></p>
-                <p><span class="fixwidth200">Capacity:</span><span th:text="${venue.capacity}"></span></p>
-                <p><span class="fixwidth200">Food provided?</span><span th:text="${venue.indoor}"></span></p>
-                <p><span class="fixwidth200">Indoor?</span><span th:text="${venue.outdoor}"></span></p>
-                <p><span class="fixwidth200">Outdoor?</span><span th:text="${venue.freeParkingAvailable}"></span></p>
-                <p><span class="fixwidth200">Free parking?</span><span th:text="${venue.city}"></span></p>
-                <p><span class="fixwidth200">City:</span><span th:text="${venue.capacity}"></span></p>
-                <p><span class="fixwidth200">Distance public transport:</span><span th:text="${venue.distanceFromPublicTransportInKm}"></span></p>
-            </div>
-            <p th:unless="${venue.venueName}">-- geen venue gespecificeerd --</p>
-            <div th:if="${next!=null}" class="nextButtonDiv">
-                <a class="buttonLook smallButton" th:href="@{'/venuedetails/' + ${next}}">&gt;</a>
-            </div>
+<div class="row1">
+    <div class="row1content">
+        <div th:if="${prev!=null}" class="prevButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{'/venuedetails/' + ${prev}}">&lt;</a>
+        </div>
+        <div th:if="${next!=null}" class="nextButtonDiv">
+            <a class="buttonLook smallButton" th:href="@{'/venuedetails/' + ${next}}">&gt;</a>
+        </div>
+        <div>
+            <h2 th:if="${venue}" th:text="|venue: ${venue.venueName}|">venue: onbekend</h2>
+            <p th:unless="${venue}">venue: onbekend</p>
+        </div>
+        <div th:if="${venue}">
+            <div class="info">Info : </div>
+            <div><a th:href="@{${venue.getLinkMoreInfo()}}" th:text="${venue.getLinkMoreInfo()}">klik hier</a></div><br>
+            <div class="info">Capacity : </div>
+            <div><p th:text="${venue.getCapacity()}">0</p></div><br>
+            <div class="info">Food provided? : </div>
+            <div><p th:text="${venue.isFoodProvided() ? 'yes' : 'no'}">no</p></div><br>
+            <div class="info">Indoor? : </div>
+            <div><p th:text="${venue.isIndoor() ? 'yes' : 'no'}">no</p></div><br>
+            <div class="info">Outdoor? : </div>
+            <div><p th:text="${venue.isOutdoor() ? 'yes' : 'no'}">no</p></div><br>
+            <div class="info">Free Parking Available? : </div>
+            <div><p th:text="${venue.isFreeParkingAvailable() ? 'yes' : 'no'}">no</p></div><br>
+            <div class="info">Distance Public Transport in km : </div>
+            <div><p th:text="${venue.distanceFromPublicTransportInKm}">0</p></div><br>
+            <div class="info">City : </div>
+            <div><p th:text="${venue.getCity()}">?/p></div>
         </div>
     </div>
 </div>

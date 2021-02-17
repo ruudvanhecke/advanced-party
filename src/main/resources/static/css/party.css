@@ -92,6 +92,12 @@ a {
     padding: 0.2em;
 }
 
+.filterButton {
+    margin: 0 2px;
+    width: 2em;
+    padding: 0.2em;
+}
+
 .prevButtonDiv {
     position: fixed;
     left: 10px;
@@ -118,6 +124,33 @@ a {
     margin-left: 40px;
 }
 
-.fixwidth200 {
-    width: 200px;
+div.info {
+    width: 240px;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+div.info + div {
+    display: inline-block;
+}
+
+p { margin: 5px; }
+
+.activeFilter {
+    background-color: #f3a4b4;
+    color: #2b3e35;
+}
+
+.filters {
+}
+
+.onefilter {
+    margin: 2px 0;
+    display: flex;
+}
+
+.filtername {
+    width: 10em;
+    padding: 0.2em;
+    text-align: right;
 }
