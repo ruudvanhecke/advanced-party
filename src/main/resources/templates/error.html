@@ -3,20 +3,14 @@
 <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
 <head>
     <meta charset="UTF-8">
-    <title>venuelist</title>
+    <title>Homepagina</title>
 </head>
 <body>
 <div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
-<div>
-    <div class="row1">
-        <div class="row1content">
-            <h1>Venues</h1>
-            <div th:each="venue, status: ${venues}">
-                <a class="buttonLook mediumButton" th:href="@{'/venuedetails/' + ${status.index}}">
-                    <span th:text="${venue}">Naam venue</span>
-                </a>
-            </div>
-        </div>
+<div class="row1">
+    <div class="row1content">
+        <h2>Ai, er ging iets mis...</h2>
+        <p>Gebruik het menu om verder te werken met de applicatie.</p>
     </div>
 </div>
 <div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>

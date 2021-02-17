@@ -6,23 +6,13 @@
     <title>about</title>
 </head>
 <body>
-<div>
-    <div class="nav">
-        <h1>Let's Party!</h1>
-        <div class="navbuttons">
-            <a href="/home">home</a>
-            <a href="/venuelist">venue</a>
-            <a href="/about">about</a>
-        </div>
-    </div>
-    <div class="about">
-        <h1>about</h1>
-        <p>Dit gaat over de applicatie.</p>
-        <p th:text="${mijnSpeciaalNummer}">onbekend nummer</p>
-    </div>
-    <div class="footer">
-        <p>copyright ThomasMore</p>
+<div th:replace="fragments/headerfooter :: header">Hier komt de header</div>
+<div class="row1">
+    <div class="row1content">
+        <h2>About</h2>
+        <p>Dit gaat over de applicatie</p>
     </div>
 </div>
+<div th:replace="fragments/headerfooter :: footer">Hier komt de footer</div>
 </body>
 </html>
