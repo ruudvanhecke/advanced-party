@@ -14,12 +14,20 @@
     </div>
 <div class="animallist collectionlist collectionleft">
     <h2>who goes?</h2>
-    <div>
-        <a class="buttonLook mediumButton" th:href="@{/venuedetails/Dorstige Dromedaris}">
-            <span>Dorstige Dromedaris</span>
-        </a>
-    </div>
 
+
+    <div class="row1">
+        <div class="row1content">
+            <h2>venues</h2>
+            <div class="venuelist">
+                <div th:each="venue, status: ${venues}">
+                    <a class="buttonLook mediumButton" th:href="@{'/venuedetailsbyindex/'+${status.index}}">
+                        <span th:text="${venue}">venue name</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </div>
 </body>

@@ -11,7 +11,15 @@
 
     <div class="row1">
         <div class="row1content">
-            <h2 th:text="|venue: ${venuename}|">venue: onbekend</h2>
+            <div class="prevButtonDiv">
+                <a class="buttonLook prevnextButton" th:href="@{'/venuedetailsbyindex/'+${prev}}">&lt;</a>
+            </div>
+            <div class="nextButtonDiv">
+                <a class="buttonLook prevnextButton" th:href="@{'/venuedetailsbyindex/'+${next}}">&gt;</a>
+
+            </div>
+            <h2 th:if="${venuename}" th:text="|venue: ${venuename}|">venue: Onbekend</h2>
+            <h2 th:unless="${venuename}">venue: Onbekend</h2>
         </div>
     </div>
 </div>
