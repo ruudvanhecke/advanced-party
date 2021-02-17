@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @Controller
 public class HomeController {
     private final Venue[] venues = {
-            new Venue("De Club", "http://declubinfo"),
+            new Venue("De Club", "http://declubinfo", 240, true, false, true, false, "Antwerpen", 10.7),
             new Venue("De Loods", "http://deloodsinfo"),
             new Venue("Zapoi", "http://zapoiinfo"),
             new Venue("Nekkerhal", "http://nekkerhalinfo")
@@ -30,7 +30,7 @@ public class HomeController {
     @GetMapping({"/venuedetails", "/venuedetails/{venueId}"})
     public String venueDetails(Model model, @PathVariable(required = false) Integer venueId) {
         if (venueId!=null && venueId>=0 && venueId<venues.length) {
-            model.addAttribute("venuename", venues[venueId].getVenueName());
+            model.addAttribute("venue", venues[venueId]);
             model.addAttribute("prev", venueId>0 ? venueId-1 : venues.length-1);
             model.addAttribute("next", venueId<venues.length-1 ? venueId+1 : 0);
         }

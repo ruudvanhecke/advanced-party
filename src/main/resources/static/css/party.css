@@ -117,3 +117,7 @@ a {
 .bottom p {
     margin-left: 40px;
 }
+
+.fixwidth200 {
+    width: 200px;
+}

@@ -13,8 +13,18 @@
             <div th:if="${prev!=null}" class="prevButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{'/venuedetails/' + ${prev}}">&lt;</a>
             </div>
-            <h2 th:if="${venuename}" th:text="|venue: ${venuename}|">venue: onbekend</h2>
-            <p th:unless="${venuename}">-- geen venue gespecificeerd --</p>
+            <div th:if="${venue}">
+                <h2 th:text="|venue: ${venue.venueName}|">venue: onbekend</h2>
+                <p><span class="fixwidth200">Info:</span>a th:href="@{${venue.linkMoreInfo}}">meer info</spana></p>
+                <p><span class="fixwidth200">Capacity:</span><span th:text="${venue.capacity}"></span></p>
+                <p><span class="fixwidth200">Food provided?</span><span th:text="${venue.indoor}"></span></p>
+                <p><span class="fixwidth200">Indoor?</span><span th:text="${venue.outdoor}"></span></p>
+                <p><span class="fixwidth200">Outdoor?</span><span th:text="${venue.freeParkingAvailable}"></span></p>
+                <p><span class="fixwidth200">Free parking?</span><span th:text="${venue.city}"></span></p>
+                <p><span class="fixwidth200">City:</span><span th:text="${venue.capacity}"></span></p>
+                <p><span class="fixwidth200">Distance public transport:</span><span th:text="${venue.distanceFromPublicTransportInKm}"></span></p>
+            </div>
+            <p th:unless="${venue.venueName}">-- geen venue gespecificeerd --</p>
             <div th:if="${next!=null}" class="nextButtonDiv">
                 <a class="buttonLook smallButton" th:href="@{'/venuedetails/' + ${next}}">&gt;</a>
             </div>
