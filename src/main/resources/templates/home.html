@@ -6,8 +6,22 @@
     <title>Homepagina</title>
 </head>
 <body>
-<h1>Home pagina</h1>
-<p th:text="${mijnSpeciaalNummer}">onbekend nummer</p>
-<a th:href="@{/about}">Naar de aboutpagina</a>
+<div>
+    <div class="nav">
+        <h1>Let's Party!</h1>
+        <div class="navbuttons">
+            <a href="/home">home</a>
+            <a href="/venuelist">venue</a>
+            <a href="/about">about</a>
+        </div>
+    </div>
+    <div class="home">
+        <h1>Home pagina</h1>
+        <p th:text="${mijnSpeciaalNummer}">onbekend nummer</p>
+    </div>
+    <div class="footer">
+        <p>copyright ThomasMore</p>
+    </div>
+</div>
 </body>
 </html>

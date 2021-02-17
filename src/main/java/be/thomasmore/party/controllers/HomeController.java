@@ -16,16 +16,18 @@ public class HomeController {
         model.addAttribute("mijnSpeciaalNummer", mySpecialNumber);
         return "home";
     }
+
     @GetMapping("/about")
     public String about(Model model){
         model.addAttribute("mijnSpeciaalNummer", mySpecialNumber);
         return "about";
     }
-    @GetMapping("/venuedetails/{venueName}")
-    public String venueDetails(Model model, @PathVariable String venueName) {
-        model.addAttribute("venuename", venueName);
+    @GetMapping({"/venuedetails", "/venuedetails/{venueName}"})
+    public String venueDetails(Model model, @PathVariable(required = false) String venueName) {
+        model.addAttribute("venuename", venueName==null ? "--no venue specified--" : venueName);
         return "venuedetails";
     }
+
     @GetMapping("/venuelist")
     public String venueList(Model model) {
         return "venuelist";
