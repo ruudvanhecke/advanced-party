@@ -12,13 +12,11 @@ public class HomeController {
 
     @GetMapping({"/" , "/home"})
     public String home(Model model) {
-        model.addAttribute("mijnSpeciaalNummer", mySpecialNumber);
         return "home";
     }
 
     @GetMapping("/about")
     public String about(Model model) {
-        model.addAttribute("mijnSpeciaalNummer", mySpecialNumber);
         return "about";
     }
 
