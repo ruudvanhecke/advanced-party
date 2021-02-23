@@ -18,8 +18,41 @@
                 <a class="buttonLook prevnextButton" th:href="@{'/venuedetailsbyindex/'+${next}}">&gt;</a>
 
             </div>
-            <h2 th:if="${venuename}" th:text="|venue: ${venuename}|">venue: Onbekend</h2>
-            <h2 th:unless="${venuename}">venue: Onbekend</h2>
+            <h2 th:if="${venue}" th:text="|venue: ${venue.getVenueName()}|">venue: onbekend</h2>
+
+                <div  th:if="${venue}">
+                    <div class="info">info: </div>
+                    <div><a th:href="${venue.getLinkMoreInfo()}">Klik hier voor info</a></div>
+                </div>
+            <div  th:if="${venue}">
+                <div class="info">capacity: </div>
+                <div><a th:text="${venue.getCapacity()}"></a></div>
+            </div>
+            <div  th:if="${venue}">
+            <div class="info">indoor: </div>
+            <div><a th:text="${venue.isIndoor()}"></a></div>
+        </div>
+            <div  th:if="${venue}">
+                <div class="info">City: </div>
+                <div><a th:text="${venue.getCity()}"></a></div>
+            </div>
+                <div class="infoLine">
+                    <div class="infoLineName">outdoor:</div>
+                    <div class="infoLineValue">no</div>
+                </div>
+                <div class="infoLine">
+                    <div class="infoLineName">free parking:</div>
+                    <div class="infoLineValue">yes</div>
+                </div>
+                <div class="infoLine">
+                    <div class="infoLineName">city:</div>
+                    <div class="infoLineValue">Mechelen</div>
+                </div>
+                <div class="infoLine">
+                    <div class="infoLineName">distance from public transport:</div>
+                    <div class="infoLineValue">2 km</div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

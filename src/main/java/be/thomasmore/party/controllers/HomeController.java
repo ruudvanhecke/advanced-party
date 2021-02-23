@@ -1,5 +1,6 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Venue;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,7 +9,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class HomeController {
     private final int mySpecialNumber = 729;
-    private final String[] venueNames = { "De Club", "De Loods", "Zapoi", "Nekkerhal"};
+        private final Venue[] venues = {
+                new Venue("De Club", "http://declubinfo", 100, true,"Mechelen"),
+                new Venue("De Loods", "http://deloodsinfo", 120, true, "Retie"),
+                new Venue("Zapoi", "http://zapoiinfo", 300, false, "Retie"),
+                new Venue("Nekkerhal", "http://nekkerhalinfo", 329, false, "Antwerpen")};
+
 
     @GetMapping({"/" , "/home"})
     public String home(Model model) {
@@ -20,29 +26,34 @@ public class HomeController {
         return "about";
     }
 
-    @GetMapping({"/venuedetails", "/venuedetails/{venueName}"})
-    public String venueDetails(Model model, @PathVariable(required = false) String venueName) {
-        model.addAttribute("venuename", venueName);
+    @GetMapping({"/venuedetails", "/venuedetails/{venueId}"})
+    public String venueDetails(Model model, @PathVariable(required = false) Integer venueId) {
+        Venue venue = (venueId>=0 && venueId < venues.length) ? venues[venueId] : null;
+        model.addAttribute("venue", venue);
+        model.addAttribute("prev", (venueId>=0 && venueId < venues.length) ? (venueId>0 ? venueId-1 : venues.length-1) : null);
+        model.addAttribute("next", (venueId>=0 && venueId < venues.length) ? (venueId<venues.length-1 ? venueId+1 : 0) : null);
         return "venuedetails";
     }
 
 
     @GetMapping({"/venuedetailsbyindex", "/venuedetailsbyindex/{venueId}"})
     public String venueDetailsByIndex(Model model, @PathVariable(required = false) Integer venueId) {
-        if (venueId!=null && venueId>=0 && venueId<venueNames.length)
+        if (venueId!=null && venueId>=0 && venueId<venues.length)
         {
-            model.addAttribute("venuename", venueNames[venueId]);
-            model.addAttribute("prev", venueId>0 ? venueId - 1 : venueNames.length - 1);
-            model.addAttribute("next" , venueId< venueNames.length - 1 ? venueId + 1 : 0);
+            model.addAttribute("venue", venues[venueId]);
+            model.addAttribute("prev", venueId>0 ? venueId - 1 : venues.length - 1);
+            model.addAttribute("next" , venueId< venues.length - 1 ? venueId + 1 : 0);
         }
-        //model.addAttribute("venuename", venueName);
+      //  model.addAttribute("venuename", venues);
         return "venuedetails";
     }
 
     @GetMapping("/venuelist")
     public String venueList(Model model) {
-        model.addAttribute("venues", venueNames);
+        model.addAttribute("venues", venues);
         return "venuelist";
     }
+
+
 
 }
