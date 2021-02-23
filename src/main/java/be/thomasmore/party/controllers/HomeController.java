@@ -27,6 +27,7 @@ public class HomeController {
 
     @GetMapping({"/venuedetails", "/venuedetails/{venueId}"})
     public String venueDetails(Model model, @PathVariable(required = false) Integer venueId) {
+        if (venueId==null) return "venuedetails";
         Optional<Venue> optionalVenue = venueRepository.findById(venueId);
         if (optionalVenue.isPresent()) {
             model.addAttribute("venue", optionalVenue.get());
