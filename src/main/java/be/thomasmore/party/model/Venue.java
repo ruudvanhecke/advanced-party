@@ -1,6 +1,12 @@
 package be.thomasmore.party.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Venue {
+    @Id
+    private int id;
     private String venueName;
     private String linkMoreInfo;
     private int capacity;
@@ -10,6 +16,17 @@ public class Venue {
     private boolean freeParkingAvailable;
     private String city;
     private double distanceFromPublicTransportInKm;
+
+    public Venue() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Venue(String venueName, String linkMoreInfo) {
         this.venueName = venueName;

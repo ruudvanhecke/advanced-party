@@ -12,7 +12,7 @@
         <div class="row1content">
             <h1>Venues</h1>
             <div th:each="venue, status: ${venues}">
-                <a class="buttonLook mediumButton" th:href="@{'/venuedetails/' + ${status.index}}">
+                <a class="buttonLook mediumButton" th:href="@{'/venuedetails/' + ${venue.id}}">
                     <span th:text="${venue.venueName}">Naam venue</span>
                 </a>
             </div>
