@@ -12,10 +12,10 @@
     <div class="row1">
         <div class="row1content">
             <div class="prevButtonDiv">
-                <a class="buttonLook prevnextButton" th:href="@{'/venuedetailsbyindex/'+${prev}}">&lt;</a>
+                <a class="buttonLook prevnextButton" th:href="@{'/venuedetails/'+${prev}}">&lt;</a>
             </div>
             <div class="nextButtonDiv">
-                <a class="buttonLook prevnextButton" th:href="@{'/venuedetailsbyindex/'+${next}}">&gt;</a>
+                <a class="buttonLook prevnextButton" th:href="@{'/venuedetails/'+${next}}">&gt;</a>
 
             </div>
             <h2 th:if="${venue}" th:text="|venue: ${venue.getVenueName()}|">venue: onbekend</h2>
@@ -36,23 +36,7 @@
                 <div class="info">City: </div>
                 <div><a th:text="${venue.getCity()}"></a></div>
             </div>
-                <div class="infoLine">
-                    <div class="infoLineName">outdoor:</div>
-                    <div class="infoLineValue">no</div>
-                </div>
-                <div class="infoLine">
-                    <div class="infoLineName">free parking:</div>
-                    <div class="infoLineValue">yes</div>
-                </div>
-                <div class="infoLine">
-                    <div class="infoLineName">city:</div>
-                    <div class="infoLineValue">Mechelen</div>
-                </div>
-                <div class="infoLine">
-                    <div class="infoLineName">distance from public transport:</div>
-                    <div class="infoLineValue">2 km</div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>

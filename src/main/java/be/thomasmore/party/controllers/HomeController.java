@@ -1,19 +1,22 @@
 package be.thomasmore.party.controllers;
 
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.VenueRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.Optional;
+
 @Controller
 public class HomeController {
-    private final int mySpecialNumber = 729;
-        private final Venue[] venues = {
-                new Venue("De Club", "http://declubinfo", 100, true,"Mechelen"),
-                new Venue("De Loods", "http://deloodsinfo", 120, true, "Retie"),
-                new Venue("Zapoi", "http://zapoiinfo", 300, false, "Retie"),
-                new Venue("Nekkerhal", "http://nekkerhalinfo", 329, false, "Antwerpen")};
+        @Autowired
+        private VenueRepository venueRepository;
+
+        private final int mySpecialNumber = 729;
+
 
 
     @GetMapping({"/" , "/home"})
@@ -28,32 +31,28 @@ public class HomeController {
 
     @GetMapping({"/venuedetails", "/venuedetails/{venueId}"})
     public String venueDetails(Model model, @PathVariable(required = false) Integer venueId) {
-        Venue venue = (venueId>=0 && venueId < venues.length) ? venues[venueId] : null;
-        model.addAttribute("venue", venue);
-        model.addAttribute("prev", (venueId>=0 && venueId < venues.length) ? (venueId>0 ? venueId-1 : venues.length-1) : null);
-        model.addAttribute("next", (venueId>=0 && venueId < venues.length) ? (venueId<venues.length-1 ? venueId+1 : 0) : null);
-        return "venuedetails";
-    }
-
-
-    @GetMapping({"/venuedetailsbyindex", "/venuedetailsbyindex/{venueId}"})
-    public String venueDetailsByIndex(Model model, @PathVariable(required = false) Integer venueId) {
-        if (venueId!=null && venueId>=0 && venueId<venues.length)
-        {
-            model.addAttribute("venue", venues[venueId]);
-            model.addAttribute("prev", venueId>0 ? venueId - 1 : venues.length - 1);
-            model.addAttribute("next" , venueId< venues.length - 1 ? venueId + 1 : 0);
+        Optional<Venue> optionalVenue = venueRepository.findById(venueId);
+        if (optionalVenue.isPresent()){
+            model.addAttribute("venue", optionalVenue.get());
+            model.addAttribute("prev", venueId>1 ? venueId-1 : venueRepository.count());
+            model.addAttribute("next", venueId<venueRepository.count() ? venueId+1 : 1);
         }
-      //  model.addAttribute("venuename", venues);
         return "venuedetails";
     }
+
+
 
     @GetMapping("/venuelist")
     public String venueList(Model model) {
+        Iterable<Venue> venues = venueRepository.findAll();
         model.addAttribute("venues", venues);
         return "venuelist";
     }
-
+    @GetMapping({"/venuedetailsbyid", "/venuedetailsbyid/{id}"})
+    public String venueDetailsById(Model model, @PathVariable(required = false) Integer id) {
+        model.addAttribute("venue", venueRepository.findById(id).get());
+        return "venuedetails";
+    }
 
 
 }
