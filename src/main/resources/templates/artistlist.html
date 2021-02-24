@@ -1,0 +1,36 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="../static/css/style.css" />
+<body>
+<div>
+    <div class="nav">
+        <h1>Let's Party!</h1>
+        <div th:replace="fragments/header :: header">Hier komt de header</div>
+    </div>
+    <div class="row1">
+        <div class="row1content">
+            <h2>Artists</h2>
+        </div>
+    </div>
+    <div class="animallist collectionlist collectionleft">
+        <h2>who goes?</h2>
+
+
+        <div class="row1">
+            <div class="row1content">
+                <h2>artist</h2>
+                <div class="artistlist">
+                    <div th:each="artist, status: ${artists}">
+                        <a class="buttonLook mediumButton" th:href="@{'/artistdetails/'+${artist.id}}">
+                            <span th:text="${artist.getArtistName()}">Artist name</span>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<div th:replace="fragments/footer :: footer">Hier komt de footer</div>
+</html>

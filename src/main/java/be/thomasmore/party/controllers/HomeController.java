@@ -1,6 +1,8 @@
 package be.thomasmore.party.controllers;
 
+import be.thomasmore.party.model.Artist;
 import be.thomasmore.party.model.Venue;
+import be.thomasmore.party.repositories.ArtistRepository;
 import be.thomasmore.party.repositories.VenueRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,8 @@ import java.util.Optional;
 public class HomeController {
         @Autowired
         private VenueRepository venueRepository;
+        @Autowired
+        private ArtistRepository artistRepository;
 
         private final int mySpecialNumber = 729;
 
@@ -31,6 +35,7 @@ public class HomeController {
 
     @GetMapping({"/venuedetails", "/venuedetails/{venueId}"})
     public String venueDetails(Model model, @PathVariable(required = false) Integer venueId) {
+        if (venueId==null) return "venuedetails";
         Optional<Venue> optionalVenue = venueRepository.findById(venueId);
         if (optionalVenue.isPresent()){
             model.addAttribute("venue", optionalVenue.get());
@@ -38,6 +43,27 @@ public class HomeController {
             model.addAttribute("next", venueId<venueRepository.count() ? venueId+1 : 1);
         }
         return "venuedetails";
+    }
+
+    @GetMapping({"/artistdetails", "/artistdetails/{artistId}"})
+    public String artistDetails(Model model, @PathVariable(required = false) Integer artistId) {
+        if (artistId==null) return "artistdetails";
+        Optional<Artist> optionalArtist = artistRepository.findById(artistId);
+        if (optionalArtist.isPresent()){
+            model.addAttribute("artist", optionalArtist.get());
+            model.addAttribute("prev", artistId>1 ? artistId-1 : artistRepository.count());
+            model.addAttribute("next", artistId<artistRepository.count() ? artistId+1 : 1);
+        }
+        return "artistdetails";
+    }
+
+
+
+    @GetMapping("/artistlist")
+    public String artistlist(Model model) {
+        Iterable<Artist> artists = artistRepository.findAll();
+        model.addAttribute("artists", artists);
+        return "artistlist";
     }
 
 
@@ -48,6 +74,8 @@ public class HomeController {
         model.addAttribute("venues", venues);
         return "venuelist";
     }
+
+
     @GetMapping({"/venuedetailsbyid", "/venuedetailsbyid/{id}"})
     public String venueDetailsById(Model model, @PathVariable(required = false) Integer id) {
         model.addAttribute("venue", venueRepository.findById(id).get());
