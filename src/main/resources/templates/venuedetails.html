@@ -9,6 +9,8 @@
     </div>
     <div class="freespaceforheader"></div>
 
+
+
     <div class="row1">
         <div class="row1content" >
             <div class="prevButtonDiv" th:if="${venue}" >
@@ -16,7 +18,6 @@
             </div>
             <div class="nextButtonDiv" th:if="${venue}">
                 <a class="buttonLook prevnextButton" th:href="@{'/venuedetails/'+${next}}">&gt;</a>
-
             </div>
             <h2 th:if="${venue}" th:text="|venue: ${venue.getVenueName()}|">venue: onbekend</h2>
             <h2 th:unless="${venue}">Venue: Onbekend!</h2>

@@ -17,24 +17,24 @@
             <div class="nextButtonDiv" th:if="${artist}">
                 <a class="buttonLook prevnextButton" th:href="@{'/artistdetails/'+${next}}">&gt;</a>
 
+
             </div>
             <h2 th:if="${artist}" th:text="|artist: ${artist.getArtistName()}|">Artist: onbekend</h2>
             <h2 th:unless="${artist}">Artist: Onbekend!</h2>
 
+            <div  th:if="${artist}">
+                <div class="info">Info: </div>
+                <div><a th:href="${artist.getLinkMoreInfo()}">Klik hier voor info</a></div>
+            </div>
 
             <div  th:if="${artist}">
-                <div class="info">info: </div>
+                <div class="info">Bio: </div>
                 <div><a  th:text="${artist.getBio()}"></a></div>
             </div>
 
             <div  th:if="${artist}">
-                <div class="info">genre: </div>
+                <div class="info">Genre: </div>
                 <div><a th:text="${artist.getGenre()}">Genre: </a></div>
-            </div>
-
-            <div  th:if="${artist}">
-                <div class="info">info: </div>
-                <div><a th:href="${artist.getLinkMoreInfo()}">Klik hier voor info</a></div>
             </div>
 
         </div>

@@ -92,6 +92,10 @@ a {
 .smallButton {
     width: 5em;
 }
+.smallButton, .yesno {
+    position: relative;
+    padding: 4px;
+}
 
 .menuButton {
     display: block;
@@ -102,6 +106,11 @@ a {
 
 .secbutton {
     margin-left: auto;
+}
+
+.yes {
+    height: 200px;
+    position: relative;
 }
 
 .filterButton {
