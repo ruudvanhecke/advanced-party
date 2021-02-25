@@ -48,17 +48,56 @@ public class HomeController {
         return "venuelist";
     }
 
-    @GetMapping({"/venuelist/outdoor","/venuelist/outdoor/{filter}"})
-    public String venueListOutdoor(Model model, @PathVariable(required = false) String filter) {
-        boolean boolFilter;
-        if (filter!=null && (filter.equals("false") || filter.equals("no") || filter.equals("neen") || filter.equals("0"))) {
-            boolFilter = false;
+    @GetMapping({"/venuelist/outdoor/{filter}", "/venuelist/outdoor"})
+    public String venueListOutdoorYes(Model model, @PathVariable(required = false) String filter) {
+        Iterable<Venue> venues;
+        Boolean realFilter = null;
+        if (filter == null || filter.equals("yes") || filter.equals("true")) realFilter = true;
+        if (filter != null && (filter.equals("no") || filter.equals("false"))) realFilter = false;
+        if (realFilter == null) {
+            venues = venueRepository.findAll();
         } else {
-            boolFilter = true;
+            venues = venueRepository.findByOutdoor(realFilter);
         }
-        Iterable<Venue> venues = venueRepository.findByOutdoor(boolFilter);
-        model.addAttribute("outdoorFilter", boolFilter);
         model.addAttribute("venues", venues);
+        model.addAttribute("outdoorFilter", realFilter);
+        return "venuelist";
+    }
+
+    @GetMapping({"/venuelist/indoor/{filter}", "/venuelist/indoor"})
+    public String venueListIndoorYes(Model model, @PathVariable(required = false) String filter) {
+        Iterable<Venue> venues;
+        Boolean realFilter = null;
+        if (filter == null || filter.equals("yes") || filter.equals("true")) realFilter = true;
+        if (filter != null && (filter.equals("no") || filter.equals("false"))) realFilter = false;
+        if (realFilter == null) {
+            venues = venueRepository.findAll();
+        } else {
+            venues = venueRepository.findByIndoor(realFilter);
+        }
+        model.addAttribute("venues", venues);
+        model.addAttribute("indoorFilter", realFilter);
+        return "venuelist";
+    }
+
+    @GetMapping("/venuelist/size/{filter}")
+    public String venueListSize(Model model, @PathVariable String filter) {
+        Iterable<Venue> venues;
+        if (filter.equals("S") || filter.equals("small")) {
+            filter = "S";
+            venues = venueRepository.findByCapacityBetween(0, 200);
+        } else if (filter.equals("M") || filter.equals("medium")) {
+            filter = "M";
+            venues = venueRepository.findByCapacityBetween(201, 500);
+        } else if (filter.equals("L") || filter.equals("large")) {
+            filter = "L";
+            venues = venueRepository.findByCapacityGreaterThan(500);
+        } else {
+            filter = null;
+            venues = venueRepository.findAll();
+        }
+        model.addAttribute("venues", venues);
+        model.addAttribute("sizeFilter", filter);
         return "venuelist";
     }
 
