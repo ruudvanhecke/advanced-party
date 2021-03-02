@@ -1,6 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css" />
+<link rel="stylesheet" type="text/css" media="all" th:href="@{/css/party.css}" href="/css/party.css"/>
 <head>
     <meta charset="UTF-8">
     <title>venuelist</title>
@@ -12,7 +12,7 @@
         <div class="row1content">
             <h1>Venues</h1>
 
-                    <span class="flex-box activeFilter" th:text="|${nrVenues} venues found|"></span>
+            <span class="flex-box activeFilter" th:text="|${nrVenues} venues found|"></span>
 
             <div class="filters" th:if="${showFilter}">
                 <form>
@@ -22,7 +22,12 @@
                     <h3>capacity</h3>
                     <div class="onefilter">
                         <label for="minCapacity" class="filtername">min</label>
-                        <input type="number" id="minCapacity" name="minimumCapacity" value="0" step="50"> <span>persons</span>
+                        <input type="number" id="minCapacity" name="minimumCapacity" th:value="${minimumCapacity}" step="50" min="0"><span>persons</span>
+                        <br>
+                    </div>
+                    <div class="onefilter">
+                        <label for="maxCapacity" class="filtername">max</label>
+                        <input type="number" id="maxCapacity" name="maximumCapacity" th:value="${maximumCapacity}" step="50" min="0"><span>persons</span>
                     </div>
                 </form>
             </div>
@@ -32,7 +37,7 @@
                 </div>
                 <p>hier komt de filter</p>
             </div>
-                <div class="filters" th:unless="${showFilter}">
+            <div class="filters" th:unless="${showFilter}">
                 <div class="verticalmargin">
                     <a th:href="@{/venuelist/filter}" class="buttonLook filterButton">+</a>
                 </div>
