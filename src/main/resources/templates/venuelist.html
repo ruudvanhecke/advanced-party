@@ -24,6 +24,7 @@
                         <label for="minCapacity" class="filtername">min</label>
                         <input type="number" id="minCapacity" name="minimumCapacity" th:value="${minimumCapacity}" step="50" min="0"><span>persons</span>
                         <br>
+
                     </div>
                     <div class="onefilter">
                         <label for="maxCapacity" class="filtername">max</label>
@@ -35,7 +36,6 @@
                 <div class="verticalmargin">
                     <a th:href="@{/venuelist}" class="buttonLook filterButton">-</a>
                 </div>
-                <p>hier komt de filter</p>
             </div>
             <div class="filters" th:unless="${showFilter}">
                 <div class="verticalmargin">
