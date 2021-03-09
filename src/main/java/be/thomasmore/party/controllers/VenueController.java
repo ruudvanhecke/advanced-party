@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -46,34 +47,64 @@ public class VenueController {
     }
 
     @GetMapping("/venuelist/filter")
-    public String filter(Model model, @RequestParam(required = false) Integer minimumCapacity, @RequestParam(required = false) Integer maximumCapacity) {
-        Iterable<Venue> venues;
+    public String venueListByFilter(Model model, @RequestParam(required = false) Integer minimumCapacity,
+                                    @RequestParam(required = false) Integer maximumCapacity,
+                                    @RequestParam(required = false) String food,
+                                    @RequestParam(required = false) String indoor,
+                                    @RequestParam(required = false) String outdoor,
+                                    @RequestParam(required = false) Double distance) {
+        List<Venue> venues;
         boolean showFilter = true;
         logger.info("venueListWithFilter");
         logger.info(String.format("venueListWithFilter -- min=%d", minimumCapacity));
         model.addAttribute("showFilter", showFilter);
         long nrVenues;
+        Boolean foodsForQuerry = null;
+        Boolean indoorForQuerry = null;
+        Boolean outdoorForQuerry = null;
+        if (food != null) {
+            if (food.equals("yes")) {
+                foodsForQuerry = true;
+            }
+            if (food.equals("no")) {
+                foodsForQuerry = false;
+            }
+        } else
+        {
+            food = "all";
+        }
+        if (indoor != null) {
+            if (indoor.equals("yes")) {
+                indoorForQuerry = true;
+            }
+            if (indoor.equals("no")) {
+                indoorForQuerry = false;
+            }
+        } else
+        {
+            indoor = "all";
+        }
+        if (outdoor != null) {
+            if (outdoor.equals("yes")) {
+                outdoorForQuerry = true;
+            }
+            if (outdoor.equals("no")) {
+                outdoorForQuerry = false;
+            }
+        } else
+        {
+            outdoor = "all";
+        }
         model.addAttribute("minimumCapacity", minimumCapacity);
         model.addAttribute("maximumCapacity", maximumCapacity);
-        if (minimumCapacity != null && maximumCapacity !=null) {
-           venues = venueRepository.findByCapacityBetween(minimumCapacity, maximumCapacity);
-            Collection venueCol = (Collection<Venue>) venues;
-            nrVenues = venueCol.size();
+        model.addAttribute("food", food);
+        model.addAttribute("indoor", indoor);
+        model.addAttribute("outdoor", outdoor);
+        model.addAttribute("transportKm", distance);
+        venues = venueRepository.findByALl(minimumCapacity, maximumCapacity, foodsForQuerry, indoorForQuerry, outdoorForQuerry, distance);
+        nrVenues = venues.size();
 
-        }else if(minimumCapacity != null) {
-            venues = venueRepository.findByCapacityGreaterThanEqual(minimumCapacity);
-            Collection venueCol = (Collection<Venue>) venues;
-            nrVenues = venueCol.size();
-        }
-        else if (maximumCapacity !=null){
-            venues = venueRepository.findByCapacityLessThanEqual(maximumCapacity);
-            Collection venueCol = (Collection<Venue>) venues;
-            nrVenues = venueCol.size();
-        }
-       else {
-            venues = venueRepository.findAll();
-            nrVenues = venueRepository.count();
-        }
+
         model.addAttribute("nrVenues", nrVenues);
         model.addAttribute("venues", venues);
         model.addAttribute("showFilter", true);
